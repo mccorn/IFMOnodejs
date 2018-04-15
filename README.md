@@ -1,3 +1,3 @@
 # IFMOnodejs
 
-Cased all projects,course- and homeworks
+Case for projects,course- and homeworks
