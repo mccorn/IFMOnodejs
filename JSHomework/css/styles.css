@@ -12,6 +12,34 @@ ul {
     list-style: none;
 }
 
+a: hover {
+    cursor: pointer;
+}
+
+button {
+    min-width: 350px;
+    text-align: left;
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px 15px;
+    border: 2px solid rgba(10,10,220,0.8);
+    border-radius: 5px;
+    background: rgba(10,10,220,0.2);
+} 
+
+button:hover {
+    cursor: pointer;
+    background: rgba(10,10,220,0.8);
+    color: white;
+}
+
+button[disabled] {
+    background: rgba(220,10,10,0.2);
+    border: 2px solid rgba(220,10,10,0.8);
+    cursor: no-drop;
+    color: inherit;
+}
+
 .wrapper {
     display: flex;
     height: 100%;
@@ -41,26 +69,3 @@ ul {
     background: rgba(10,10,220,0.2);
 }
 
-button {
-    min-width: 350px;
-    text-align: left;
-    display: block;
-    margin-bottom: 10px;
-    padding: 5px 15px;
-    border: 2px solid rgba(10,10,220,0.8);
-    border-radius: 5px;
-    background: rgba(10,10,220,0.2);
-} 
-
-button:hover {
-    cursor: pointer;
-    background: rgba(10,10,220,0.8);
-    color: white;
-}
-
-button[disabled] {
-    background: rgba(220,10,10,0.2);
-    border: 2px solid rgba(220,10,10,0.8);
-    cursor: no-drop;
-    color: inherit;
-}

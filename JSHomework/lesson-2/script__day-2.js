@@ -4,7 +4,7 @@ var messagestr = '';
 
 function testTask_1() {
     var rndResolution = corn.confirmRnd();
-    messagestr = '';
+    messagestr = ``;
     if (rndResolution) {
         par1 = corn.rnd(100);
         par2 = corn.rnd(80);
@@ -67,10 +67,14 @@ function testTask_4() {
         messagestr = 'Давай, до свидания!';
     }
     corn.alert(messagestr);
-}
+};
 
 function testTask_5() {
-    corn.alert('Error: и у меня тоже выходной!');
+    var str = prompt("Add some string");
+    messagestr = ``;
+    
+    messagestr = str + `\nResult:` + isPalindrome(str); 
+    corn.alert(messagestr);
 };
 
 function testTask_6() {
@@ -80,7 +84,7 @@ function testTask_6() {
     if (rndResolution) {
         par1 = corn.rndRound(3000,1);
         messagestr += `par1 (X) = ${par1}`;
-        if (isBbssextile(par1)) {
+        if (isBissextile(par1)) {
             messagestr += "\nНе високосный"; 
         } else {
             messagestr += "\n Не високосный"; 
@@ -91,7 +95,8 @@ function testTask_6() {
     
     corn.alert(messagestr);
 };
-    
+
+
 function testTask_7() {
     var rndResolution = corn.confirmRnd();
     messagestr = '';
@@ -116,4 +121,24 @@ function testTask_7() {
 
 function isBissextile(par1) {
     return par1 % 4 || (par1 % 400 && !(par1 % 100));
-}
+};
+
+// TODO: Сделать корректно работающей с кириллицей
+function isPalindrome(str) {
+    //console.log(str);
+    str = str.replace(/[^\w]/g, "").toLowerCase();
+    //console.log(str);
+    var i = 0; 
+    switch (str.length) {
+        case 0:
+        case 1: return true;break;
+        case 2:
+        case 3: return str[0] == str[str.length - 1];break;
+        default:i = Math.floor(--str.length / 2);
+    };
+    while (i && str[i - 1] == str[str.length - i]) {
+        i--;
+    };
+    
+    return !i;
+};
