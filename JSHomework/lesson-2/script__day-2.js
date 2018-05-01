@@ -124,7 +124,7 @@ function testTask_7() {
 };
 
 function isBissextile(par1) {
-    return par1 % 4 || (par1 % 400 && !(par1 % 100));
+    return !((par1 % 4) || (!(par1 % 100) && (par1 % 400)));
 };
 
 // TODO: Сделать корректно работающей с кириллицей

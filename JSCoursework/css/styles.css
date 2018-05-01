@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    min-width: 300px;
+}
+
+canvas {
+    width: 100%;
+    border: 1px solid rgba(20,20,200,0.4);
+    background: rgba(20,20,200,0.1)
+}
+
+.corn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(220,220,20,0.5);
+    border: 2px solid rgba(220,220,20,0.8);
+    border-radius: 50%;
+    
+}
+
+.corn {
+    animation: 2.5s linear gway infinite alternate,
+            2.5s cubic-bezier(0, 0, 0.2, 1) vway infinite alternate;
+}
+
+.corn-yellow {
+    top: 10%;
+    left: 10%;
+}
+
+.corn-blue {
+    background: rgba(20,20,220,0.5);
+    top: 10%;
+    left : 90%;
+}
+
+.corn-green {
+    background: rgba(20,220,20,0.5);
+    top: 90%;
+    left: 90%;
+}
+
+.corn-red {
+    background: rgba(220,20,20,0.5);
+    top: 90%;
+    left: 10%;
+}
+
+@keyframes gway {
+    0% {
+        
+    }
+    100% {
+        left: 50%;
+    }
+}
+
+
+
+@keyframes vway {
+    100% {
+        top: 50%;    
+    }
+}*/
