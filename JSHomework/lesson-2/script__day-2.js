@@ -85,9 +85,9 @@ function testTask_6() {
         par1 = corn.rndRound(3000,1);
         messagestr += `par1 (X) = ${par1}`;
         if (isBissextile(par1)) {
-            messagestr += "\nНе високосный"; 
+            messagestr += "\високосный"; 
         } else {
-            messagestr += "\nВисокосный"; 
+            messagestr += "\nне високосный"; 
         }
     } else {
         messagestr = 'Давай, до свидания!';
