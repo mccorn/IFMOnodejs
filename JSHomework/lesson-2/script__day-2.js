@@ -56,10 +56,10 @@ function testTask_4() {
         var result = par2;
         messagestr += `par1 (X) = ${par1}\npar2 (Y) = ${par2}\n`;
         switch (par1) {
-            case 1: result *= 10;break;
-            case 2: result *= 0.001;break;
-            case 4: result *= 1000;break;
-            case 5: result *= 100;break;
+            case 1: result *= 0.1;break;
+            case 2: result *= 1000;break;
+            case 4: result *= 0.001;break;
+            case 5: result *= 0.01;break;
             default: messagestr = "!ERROR!";break;
         }
         messagestr += `Result: ${result} m.`;
@@ -87,7 +87,7 @@ function testTask_6() {
         if (isBissextile(par1)) {
             messagestr += "\nНе високосный"; 
         } else {
-            messagestr += "\n Не високосный"; 
+            messagestr += "\nВисокосный"; 
         }
     } else {
         messagestr = 'Давай, до свидания!';
@@ -105,12 +105,16 @@ function testTask_7() {
         par1 = corn.rndRound(100);
         par2 = corn.rndRound(100)/2;
         messagestr += `Before:\npar1 (X) = ${par1}\npar2 (Y) = ${par2}`;
-        if (par1 == par2 * 2) {
+        while (par2 > 0 && par1 > 0) {
+            par2 -= 0.5;
+            par1--;
+        }
+        if (par1 == 0 && par2 == 0) {
              messagestr += '\nТарелки вымыты. Моющее средство закончилось.'; 
-        } else if (par1 > par2 * 2) {
-             messagestr += (`\n\u2015\nAfter:\nКол-во невымытых тарелок = ${par1-par2*2}\n`);
+        } else if (par1 > 0) {
+             messagestr += (`\n\u2015\nAfter:\nКол-во невымытых тарелок = ${par1}\n`);
         } else {
-            messagestr += (`\n\u2015\nAfter:\nОсталось средства = ${(par2 - par1 * 0.5).toFixed(1)}\n`);
+            messagestr += (`\n\u2015\nAfter:\nОсталось средства = ${par2}\n`);
         }
     } else {
         messagestr = 'Давай, до свидания!';
@@ -126,7 +130,7 @@ function isBissextile(par1) {
 // TODO: Сделать корректно работающей с кириллицей
 function isPalindrome(str) {
     //console.log(str);
-    str = str.replace(/[^\w]/g, "").toLowerCase();
+    str = str.replace(/[\,\.\s]/g, "").toLowerCase();
     //console.log(str);
     var i = 0; 
     switch (str.length) {
