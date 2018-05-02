@@ -32,9 +32,9 @@ function testTask_2(x1,y1,z1,x2,y2,z2,x3,y3,z3) {
 //z1 = ${z1}
 //z2 = ${z2}
 //z3 = ${z3}`);
-    var par12 = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2);
-    var par13 = Math.abs(Math.sqrt((x1 - x3) ** 2 + (y1 - y3) ** 2 + (z1 - z3) ** 2));
-    var par23 = Math.sqrt((x3 - x2) ** 2 + (y3 - y2) ** 2 + (z3 - z2) ** 2);
+    var par12 = ((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2);
+    var par13 = ((x1 - x3) ** 2 + (y1 - y3) ** 2 + (z1 - z3) ** 2);
+    var par23 = ((x3 - x2) ** 2 + (y3 - y2) ** 2 + (z3 - z2) ** 2);
     corn.alert(par12 + ' - ' + parseInt(par23) + ' - ' + par13);
     corn.alert(`Result: ${isRightTriangle(par12, par13, par23)}`); 
 };
@@ -140,7 +140,7 @@ function testTask_7() {
 function isRightTriangle(par1, par2, par3) {
     var arr = [par1, par2, par3];
     arr.sort();
-    return arr[2] ** 2 == arr[1] ** 2 + arr[0] ** 2;
+    return arr[2] == arr[1] + arr[0];
 }
 
 
@@ -148,7 +148,7 @@ function isBissextile(par1) {
     return !((par1 % 4) || (!(par1 % 100) && (par1 % 400)));
 };
 
-// TODO: Сделать корректно работающей с кириллицей
+
 function isPalindrome(str) {
     //console.log(str);
     str = str.replace(/[\,\.\s]/g, "").toLowerCase();
@@ -159,7 +159,7 @@ function isPalindrome(str) {
         case 1: return true;break;
         case 2:
         case 3: return str[0] == str[str.length - 1];break;
-        default:i = Math.floor(--str.length / 2);
+        default:i = Math.floor(str.length / 2);
     };
     while (i && str[i - 1] == str[str.length - i]) {
         i--;
