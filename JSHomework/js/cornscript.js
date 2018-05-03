@@ -29,5 +29,54 @@ var corn = {
     
     confirmRnd: function() {
         return confirm('Вы согласны воспользоваться РАНДОМАЙЗЕРОМ?\nВыбрав "нет" мы принудим Вас,многоуважаемый, вводить данные вручную');
-    }
+    },
+    
+    setParameters: function(count) {
+        var count = count || 1;
+        for (var i = 0; i < count; i++) {
+            
+        }
+    },
+    
+    p1 : '1235',
+    p2 : '123ves',
+    p3 : 'sfasf',
+    
+    promptFloat: function() {
+        var min; if (min !== 0) min = min || -Infinity;
+        var max; if (max !== 0) max = max || Infinity;
+        var result;
+        var inx = 0;
+        do {
+            inx++;
+            result = parseFloat(prompt(`Set float from ${min} to ${max}`));
+            if (inx == 5) {
+                alert('Number set equal 0');
+                return 0;
+            };
+        } while (isNaN(result) || result < min || result > max);
+        alert(result);
+        if (inx == 5) return 0;
+        return result;
+    },
+    
+    promptInteger: function(min, max) {
+        var min; if (min !== 0) min = min || -Infinity;
+        var max; if (max !== 0) max = max || Infinity;
+        var result;
+        var inx = 0;
+        do {
+            inx++;
+            result = parseInt(prompt(`Set integer from ${min} to ${max}`));
+            if (inx == 5) {
+                alert('Number set equal 0');
+                return 0;
+            };
+        } while (isNaN(result) || result < min || result > max);
+        alert(result);
+        if (inx == 5) return 0;
+        return result;
+    },
+    
+   
 };

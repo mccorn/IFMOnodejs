@@ -119,7 +119,7 @@ function testTask_7() {
         par1 = corn.rndRound(100);
         par2 = corn.rndRound(100)/2;
         messagestr += `Before:\npar1 (X) = ${par1}\npar2 (Y) = ${par2}`;
-        while (par2 > 0 && par1 > 0) {
+        while (par2 >= 0.5 && par1 > 0) {
             par2 -= 0.5;
             par1--;
         }
@@ -158,10 +158,10 @@ function isPalindrome(str) {
         case 0:
         case 1: return true;break;
         case 2:
-        case 3: return str[0] == str[str.length - 1];break;
+        case 3: return str[0] === str[str.length - 1];break;
         default:i = Math.floor(str.length / 2);
     };
-    while (i && str[i - 1] == str[str.length - i]) {
+    while (i && str[i - 1] === str[str.length - i]) {
         i--;
     };
     
