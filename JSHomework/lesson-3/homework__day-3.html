@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework: Lesson #3</title>
+    
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/cornscript.js" charset="utf-8"></script>
+    <script src="script__day-3.js" charset="utf-8"></script>
+</head>
+<style>
+    
+</style>
+<body>
+   <div class="wrapper">
+       <div class="button-list">
+            <button onclick="testTask_1()"> Task #1: Summator to String</button>
+            <button onclick="testTask_2()" title="Я не работал и вам не советую!"> Task #2: Doubler for Char in String</button>
+            <button onclick="testTask_3()"> Task #3: Password validator</button>
+        </div>
+        <div class="crib-list">
+            <h3>Crib-list</h3>
+            <div class="crib-item">
+                <h4>for task #1</h4>
+                Дана строка, изображающая целое число. 
+                Вывести сумму цифр этого числа. 
+            </div>
+            <div class="crib-item">
+                <h4>for task #2</h4>
+                Дана строка S и символ C. Удвоить каждое вхождение символа C в строку S.
+            </div>
+            <div class="crib-item">
+                <h4>for task #3</h4>
+                <p>Проверить что введенный пароль удовлетворяет следующим условиям сложности:</p>
+                <ul>
+                    <li>- длинна от 9 символов;</li>
+                    <li>- содержит обязательно английские буквы верхнего и нижнего регистра;</li>
+                    <li>- содержит более двух цифр;</li>
+                    <li>- содержит обязательно один из неалфавитных символов (например, !, $, #, %).</li>
+
+                </ul>           
+            </div>
+            <div class="crib-item">
+                <h4>for task #3</h4>
+                Valid
+                <ol>
+                    <li>#1a2A3zxcv</li>
+                    <li>123456%Tt</li>
+                </ol>
+                Invalid
+                <ol>
+                    <li>qwertyuiop</li>
+                    <li>QWERTY$99</li>
+                    <li>Qwerty999</li>
+                    <li>1234567%T</li>
+                    <li>1234567%a</li>
+                    <li>12eeEE#$#</li>
+                    <li>123%Tt</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

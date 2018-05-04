@@ -78,5 +78,59 @@ var corn = {
         return result;
     },
     
-   
+   isValidPassword: function(parstring) {
+       var arr = [];
+       arr.push(parstring.length >= 9);
+       arr.push(Boolean(parstring.match(/[a-z]/g)) && Boolean((parstring.match(/[A-Z]/g))));
+       arr.push(Boolean(parstring.replace(/\D/g,'').length > 2));
+       arr.push(Boolean(parstring.match(/[!$#%]/g,'')));
+//       return arr.join(' / ');
+       return arr[0] && arr[1] && arr[2] && arr[3];
+   },
+    
+    promptPassword: function(messagestr) {
+        var result = "";
+        var inx = 0;
+        do {
+            inx++;
+            result = prompt(`Set password: `);
+            if (inx == 5) {
+                alert('Password set equal "0123%Qwerty"');
+                return "0123%Qwerty";
+            };
+        } while (result.replace(/[a-zA-Z0-9$%#!]/g,'').length > 0 || result.length == 0);
+        console.log(result);
+        return result;
+    }
+};
+
+function isRightTriangle(par1, par2, par3) {
+    var arr = [par1, par2, par3];
+    arr.sort(function(a,b){return parseInt(a) > parseInt(b);});
+    return arr[2] == arr[1] + arr[0];
+};
+
+
+function isBissextile(par1) {
+    return !((par1 % 4) || (!(par1 % 100) && (par1 % 400)));
+};
+
+
+function isPalindrome(str) {
+    //console.log(str);
+    str = str.replace(/[\,\.\s]/g, "").toLowerCase();
+    //console.log(str);
+    var i = 0; 
+    switch (str.length) {
+        case 0:
+        case 1: return true;break;
+        case 2:
+        case 3: return str[0] === str[str.length - 1];break;
+        default:i = Math.floor(str.length / 2);
+    };
+    while (i && str[i - 1] === str[str.length - i]) {
+        i--;
+    };
+    
+    return !i;
 };

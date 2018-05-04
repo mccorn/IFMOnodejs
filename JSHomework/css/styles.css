@@ -5,12 +5,18 @@
 }
 
 html, body {
+    display: block;
     height: 100%;
-    min-width: 650px;
+    min-width: 300px;
 }
 
 ul {
     list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 a: hover {
@@ -41,9 +47,29 @@ button[disabled] {
     color: inherit;
 }
 
+.link {
+    text-align: center;
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 15px 30px;
+    padding: 5px 10px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    background: #eee;
+}
+
+.link:hover {
+    border: 2px solid black;
+    cursor: pointer;
+}
+
 .wrapper {
+    position: absolute;
     display: flex;
-    height: 100%;
+    justify-content: center;
+    width: 100%;
+    min-width: 400px;
 }
 
 .crib-list {
@@ -53,6 +79,7 @@ button[disabled] {
     min-height: 300px;
     background: rgba(220,10,10,0.2);
     width: 40%;
+/*    margin: 10px;*/
 /*    padding: 10px 20px;*/
 }
 
@@ -90,21 +117,29 @@ button[disabled] {
 
 .desk {
     display: block;
-    position: fixed;
-    width: 500px;
-    height: 500px;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 0%;
+    top: 0;
 /*    border: 2px solid black;*/
 }
 
+.desk-right {
+    left: calc(100% - 200px);
+}
+
 .logo {
+    z-index: 100;
     position: absolute;
 /*    border: 2px solid #ccc;*/
     box-shadow: 0px 0px 4px 0px;
-    width: 400px;
-    height: 400px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    top: calc(50% - 200px);
-    left: calc(50% - 200px);
+    top: calc(50% + 0px);
+    left: calc(50% + 0px);
+    text-align: center;
     animation: 12s active linear infinite;
 }
 
@@ -119,19 +154,29 @@ button[disabled] {
 /*    background: #000;*/
 }
 
-.anidiv {
-    position: relative;
+.b {
+    position: absolute;
     display: block;
-    width: 200px;
-    height: 2px;
-    background: #000;
+    width: inherit;
+    height: inherit;
+/*    transform-origin: 50% 50%;*/
+/*    transform: translate(50px,50px);*/
+/*    top: calc(50% - 0px);*/
+/*    left: calc(50% - 0px);*/
+/*    background: rgba(100,200,200,0.2);*/
+}
+
+.anidiv {
+/*    position: absolute;*/
     
-    transform-origin: 200px 200px;
+    width: inherit;
+    height: 2px;
+    background: #000;   
 }
 
 .divtop {
 /*    background: #3fe811;*/
-    transform: rotate(0deg) translate(100px,100px);
+    transform: rotate(0deg) translate(0%,0%);
     animation: 2s step1 linear alternate infinite;
 /*    top: calc(0% + 100px);*/
 /*    left: calc(50% - 100px);*/
@@ -139,7 +184,7 @@ button[disabled] {
 }
 
 .divleft {
-    transform: rotate(60deg) translate(100px,300px);
+    transform: rotate(120deg) translate(0%,0%);
 /*    background: #009;*/
     animation: 2s step2 linear alternate infinite;
 /*    top: calc(50% + 50px);*/
@@ -148,7 +193,7 @@ button[disabled] {
 }
 
 .divright {
-    transform: rotate(-60deg) translate(100px,300px);
+    transform: rotate(240deg) translate(0%,0%);
 /*    background: #e83f11;*/
     animation: 2s step3 linear alternate infinite;
 /*
@@ -166,18 +211,18 @@ button[disabled] {
 
 @keyframes step1 {
     100% {
-          transform: rotate(0deg) translate(175px,150px);
+          transform: rotate(0deg) translate(50%,20%);
     }
 }
 
 @keyframes step2 {
     100% {
-         transform: rotate(60deg) translate(50px,250px);
+         transform: rotate(120deg) translate(50%,20%);
     }
 }
 
 @keyframes step3 {
     100% {
-         transform: rotate(-60deg) translate(37px,250px);
+         transform: rotate(240deg) translate(50%,20%);
     }
 }
