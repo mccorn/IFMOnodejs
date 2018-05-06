@@ -250,6 +250,37 @@ button[disabled] {
     animation: 2s step3 linear alternate infinite;   
 }
 
+.deskXO {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #fff;
+    bottom: 0;
+    border: 2px solid #000;
+    overflow: hidden;
+}
+
+.deskXO__ceil {
+    width: 33%;
+    height: 33%;
+    border: 2px solid #898;
+   
+}
+
+.deskXO__ceil-X {
+    background:url(../img/swords.png) center no-repeat;
+    background-size: 80px 80px;
+    opacity: 0.8;
+}
+
+.deskXO__ceil-0 {
+    background:  url(../img/helmet.png) center no-repeat;
+    background-size: 80px 80px;
+}
+
 @keyframes active {
     100% {
         transform: rotate(360deg);

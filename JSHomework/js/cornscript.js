@@ -101,6 +101,30 @@ var corn = {
         } while (result.replace(/[a-zA-Z0-9$%#!]/g,'').length > 0 || result.length == 0);
         console.log(result);
         return result;
+    }, 
+    
+    sort: function(parArray1) {
+        var array1 = parArray1.slice();
+        let maxindex = parArray1.length;
+        let result = [];
+        let temp = 0;
+
+        for (var i = 0; i < maxindex; i++) {
+            array1[i] = parseFloat(array1[i]); // Преобразование к числу - для удобства сравнивания
+        }
+
+        for (var i = 0; i < maxindex; i++) {
+            temp = 0; // Сбрасываем счетчик, проедполагая,что минимальный из элементов стоит в начале
+            for (var j = 0; j < array1.length; j++) { // Запускаем цикл для поиска минимального элемента в хвосте массива
+                if (array1[j] < array1[temp]) { // Проверяем, не является рассматриваемый элемент меньше предполагаемого минимума
+                    temp = j; // Заменяем индекс предполагаемого минимума на более актуальный
+                }
+            };
+            result[i] = array1[temp]; // Добавляем истинный минимум оставшегося Хвоста Массива в Результирующий Массив
+            array1.splice(temp,1); // Удаляем истинный минимум оставшегося Хвоста Массива        
+        }; 
+        
+        return result;
     }
 };
 
