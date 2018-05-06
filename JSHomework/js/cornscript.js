@@ -125,6 +125,20 @@ var corn = {
         }; 
         
         return result;
+    },
+    
+    alert: function(messagestr,flag) {
+        try {
+            //corn.unknownfunction();
+//            alert(`corn.alert() work!\nMessage: ${messagestr}`);
+            $('.modal-message__icon').addClass(`modal-message__icon-${flag}`);
+            $('.modal-message__text').empty();
+            $('.modal-message__text').append(`<span>${messagestr}</span>`);
+            $('.modal-screen').removeClass("superhiddenclass");
+        } catch (error) {
+            alert(`${messagestr}\n${error.message}`);
+        }
+        
     }
 };
 
@@ -158,3 +172,9 @@ function isPalindrome(str) {
     
     return !i;
 };
+
+function closeModalScreen() {
+//    alert('Ща закроем модалку');
+//    $('.modal-screen').hide();
+    $('.modal-screen').addClass("superhiddenclass");
+}

@@ -76,11 +76,11 @@ $(document).on('click', '.deskXO__ceil-processing', function() {
        isWinnerXO(controllerX) || isWinnerXO(controller0))
         setTimeout(function() {
             if (isWinnerXO(controllerX)) {
-               alert(`GAME OVER!\nX - winner`);
+               corn.alert(`GAME OVER!\nSwords - winner`,1);
             } else if (isWinnerXO(controller0)) {
-                alert(`GAME OVER!\n0 - winner`);
+                corn.alert(`GAME OVER!\nHelmets - winner`,2);
             } else {
-                alert(`GAME OVER!\nWon friendship!`);
+                corn.alert(`GAME OVER!\nWon friendship!`,3);
             }
             printDeskXO([]);
             controllerX = [];
