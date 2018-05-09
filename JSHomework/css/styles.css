@@ -132,7 +132,7 @@ button[disabled] {
 /*    background: #000;*/
     border: 2px solid rgba(0,150,90,0.7);
     border-radius: 50%;
-/*    background: url(../img/knight.gif) center no-repeat;*/
+    background: url(../img/home.png) center no-repeat;
     
 }
 

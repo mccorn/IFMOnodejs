@@ -83,7 +83,7 @@ var corn = {
        arr.push(parstring.length >= 9);
        arr.push(Boolean(parstring.match(/[a-z]/g)) && Boolean((parstring.match(/[A-Z]/g))));
        arr.push(Boolean(parstring.replace(/\D/g,'').length > 2));
-       arr.push(Boolean(parstring.match(/[!$#%]/g,'')));
+       arr.push(Boolean(parstring.match(/[!$#%]/g)));
 //       return arr.join(' / ');
        return arr[0] && arr[1] && arr[2] && arr[3];
    },
@@ -177,4 +177,7 @@ function closeModalScreen() {
 //    alert('Ща закроем модалку');
 //    $('.modal-screen').hide();
     $('.modal-screen').addClass("superhiddenclass");
+    $('.modal-massage__text').empty();
+    $('.modal-massage__text').attr('class','modal-massage__text');
+    $('.modal-message__icon').attr('class','modal-message__icon');
 }
