@@ -34,7 +34,7 @@ function testTask_3(parArray1) {
     let maxitem = array1[0];
     
     if (array1.length > 2) {
-        for (var i = 0; i < array1.length; i++) {
+        for (var i = 1; i < array1.length; i++) {
             array1[i] = parseFloat(array1[i]);
             if (+array1[i] < +array1[minindex]) {
                 minindex = i;
