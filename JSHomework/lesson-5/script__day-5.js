@@ -13,8 +13,8 @@ const STUDENT = {
     isGod: false
 }
 
-function testTask_1() {
-    var printingStudent = STUDENT;
+function testTask_1(student) {
+    var printingStudent = student || {};
     messagestr = '--- Student: ---'
     for (key in printingStudent) {
         messagestr += `\n${key}: ${printingStudent[key]}`;
