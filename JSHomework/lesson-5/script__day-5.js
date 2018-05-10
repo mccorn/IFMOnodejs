@@ -14,7 +14,7 @@ const STUDENT = {
 }
 
 function testTask_1(student) {
-    var printingStudent = student || {};
+    var printingStudent = student || STUDENT;
     messagestr = '--- Student: ---'
     for (key in printingStudent) {
         messagestr += `\n${key}: ${printingStudent[key]}`;
@@ -27,9 +27,14 @@ function testTask_2() {
     messagestr = `Array 1: ${arr_1}`;
     messagestr += `\nArray 2: ${arr_2}`;
     
-    var result = arr_1.slice();
+    var result = [];
+    for (var i = 0; i < arr_1.length; i++) {
+        if (result.indexOf(arr_1[i]) === -1) {
+            result.push(arr_1[i]);
+        }
+    }
     for (var i = 0; i < arr_2.length; i++) {
-        if (arr_1.indexOf(arr_2[i]) === -1) {
+        if (result.indexOf(arr_2[i]) === -1) {
             result.push(arr_2[i]);
         }
     }
