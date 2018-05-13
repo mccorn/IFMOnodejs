@@ -18,7 +18,7 @@ function testTask_1() {
     } else {
         messagestr = 'Давай, до свидания!';
     }
-    corn.alert(messagestr);
+    alert(messagestr);
 };
 
 function testTask_2(x1,y1,z1,x2,y2,z2,x3,y3,z3) {
@@ -88,7 +88,7 @@ function testTask_5() {
     messagestr = ``;
     
     messagestr = str + `\nResult:` + isPalindrome(str); 
-    corn.alert(messagestr);
+    alert(messagestr);
 };
 
 function testTask_6() {
