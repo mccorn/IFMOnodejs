@@ -1,4 +1,5 @@
-;corn = (function(){
+;var corn = function(){
+    let cornObject = {};
     // Вспомогательные функции: рандомайзеры
     // см.ниже по коду
     
@@ -13,7 +14,7 @@
         return +((Math.random()*(par1 - par2) + par2).toFixed(par3));
     },
     
-    this.rndRound = function(par1,par2) {
+    cornObject.rndRound = function(par1,par2) {
         if (isNaN(par1) || parseInt(par1) <= 0) par1 = 1;
         if (isNaN(par2)) par2 = 0;
 
@@ -215,4 +216,6 @@
         };
         return resarray;
     }
-}());
+    
+    return cornObject;
+}();

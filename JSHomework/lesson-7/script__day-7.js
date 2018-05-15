@@ -47,10 +47,10 @@ function genarateArrayRndNum(min, max) {
     var result = [];
     return function() {
         while (result.length < max - min + 1) {
-            var elem = rndRound(min, max);
+            var elem = corn.rndRound(min, max);
             if (result.indexOf(elem) === -1) result.push(elem); 
         }
-        return result;
+        return elem;
     }
 }
 
@@ -76,7 +76,7 @@ function genarateArray(min, max) {
             var elem = corn.rndRound(min, max);
             if (result.indexOf(elem) === -1) result.push(elem); 
         }
-        return result;
+        return elem;
     }
 }
 
@@ -90,9 +90,9 @@ function toCezarString(str, key) {
     return result;
 }
 
-function toCezarChar(char, key) {
+function toCezarChar(char, parkey) {
     let charcode = char.charCodeAt();
-    let key = key % 26;
+    let key = parkey % 26;
     if (key < 0) key = 26 + key;
     // 'A'.charCodeAt() = 65
     // 'Z'.charCodeAt() = 90

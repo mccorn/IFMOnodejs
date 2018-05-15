@@ -44,13 +44,14 @@ function getFactorial(numint) {
 }
 
 function genarateArrayRndNum(min, max) {
-    var result = [];
+    let result = [];
     return function() {
-        while (result.length < max - min + 1) {
-            var elem = corn.rndRound(min, max);
-            if (result.indexOf(elem) === -1) result.push(elem); 
-        }
-        return result;
+        if (result.length >= max - min + 1) result = [];
+        do  {
+            var elem = rndRound(min, max);
+        } while (result.indexOf(elem) !== -1);
+        result.push(elem);
+        return elem;
     }
 }
 
@@ -68,14 +69,15 @@ function genarateArray(min, max) {
     var result = [];
     if(max === undefined){
         return function(max){
-            return genarateArrayRndNum(min, max);
+            return genarateArray(min, max);
         }
     } else 
     return function() {
-        while (result.length < max - min + 1) {
-            var elem = corn.rndRound(min, max);
-            if (result.indexOf(elem) === -1) result.push(elem); 
-        }
-        return result;
+       if (result.length >= max - min + 1) result = [];
+        do  {
+            var elem = rndRound(min, max);
+        } while (result.indexOf(elem) !== -1);
+        result.push(elem);
+        return elem;
     }
 }
