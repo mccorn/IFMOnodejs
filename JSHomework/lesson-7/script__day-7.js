@@ -47,7 +47,7 @@ function genarateArrayRndNum(min, max) {
     var result = [];
     return function() {
         while (result.length < max - min + 1) {
-            var elem = corn.rndRound(min, max);
+            var elem = rndRound(min, max);
             if (result.indexOf(elem) === -1) result.push(elem); 
         }
         return result;
@@ -78,4 +78,32 @@ function genarateArray(min, max) {
         }
         return result;
     }
+}
+
+function toCezarString(str, key) {
+    let strlength = str.length;
+    let result = '';
+    for (let i = 0; i < strlength; i++) {
+        result += toCezarChar(str[i], key);        
+    }
+    return result;
+}
+
+function toCezarChar(char, key) {
+    let charcode = char.charCodeAt();
+    if (key < 0) key = 26 + key;
+    // 'A'.charCodeAt() = 65
+    // 'Z'.charCodeAt() = 90
+    // 'a'.charCodeAt() = 97
+    // 'z'.charCodeAt() = 122
+    if (charcode >= 97 && charcode <= 122 - key) {
+        return String.fromCharCode(charcode + key);
+    } else if (charcode >= 65 && charcode <= 90 - key) {
+        return String.fromCharCode(charcode + key);
+    } else if (charcode > 90 - key && charcode <= 90) {
+        return String.fromCharCode(64 + key - (90 - charcode));
+    } if (charcode > 122 - key && charcode <= 122) {
+        return String.fromCharCode(96 + key - (122 - charcode));
+    }
+    return char;
 }

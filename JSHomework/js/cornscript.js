@@ -181,7 +181,7 @@
         let result = pararray[0];
         let arrlength = pararray.length;
         for (let i = 1; i < arrlength; i++) {
-            if (result > pararrayp[i]) result = pararray[i];    
+            if (result > pararray[i]) result = pararray[i];    
         };
         return result;
     },
@@ -190,7 +190,7 @@
         let result = +pararray[0];
         let arrlength = pararray.length;
         for (let i = 1; i < arrlength; i++) {
-            if (result < +pararrayp[i]) result = pararray[i];    
+            if (result < +pararray[i]) result = pararray[i];    
         };
         return result;
     },
