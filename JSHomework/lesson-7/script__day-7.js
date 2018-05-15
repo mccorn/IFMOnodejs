@@ -81,6 +81,7 @@ function genarateArray(min, max) {
 }
 
 function toCezarString(str, key) {
+    if (key == 0) return '!' + str;
     let strlength = str.length;
     let result = '';
     for (let i = 0; i < strlength; i++) {
@@ -91,6 +92,7 @@ function toCezarString(str, key) {
 
 function toCezarChar(char, key) {
     let charcode = char.charCodeAt();
+    let key = key % 26;
     if (key < 0) key = 26 + key;
     // 'A'.charCodeAt() = 65
     // 'Z'.charCodeAt() = 90
