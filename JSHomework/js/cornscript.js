@@ -6,7 +6,7 @@
     // par1 - дииапозон разброса результата
     // par2 - стартовая точка диапозона
     // par3 - отброс хвоста после par3 знака после запятой
-    this.rnd = function(par1,par2,par3) {
+    cornObject.rnd = function(par1,par2,par3) {
         if (isNaN(par1) || parseInt(par1) <= 0) par1 = 1;
         if (isNaN(par2)) par2 = 0;
         if (isNaN(par3)) par3 = 2;
@@ -28,18 +28,18 @@
 //        console.log(messagestr);
 //    },
     
-    this.confirmRnd = function() {
+    cornObject.onfirmRnd = function() {
         return confirm('Вы согласны воспользоваться РАНДОМАЙЗЕРОМ?\nВыбрав "нет" мы принудим Вас,многоуважаемый, вводить данные вручную');
     },
     
-    this.setParameters = function(count) {
+    cornObject.setParameters = function(count) {
         var count = count || 1;
         for (var i = 0; i < count; i++) {
             
         }
     },
     
-    this.promptFloat = function() {
+    cornObject.promptFloat = function() {
         var min; if (min !== 0) min = min || -Infinity;
         var max; if (max !== 0) max = max || Infinity;
         var result;
@@ -57,7 +57,7 @@
         return result;
     },
     
-    this.promptInteger = function(min, max) {
+    cornObject.promptInteger = function(min, max) {
         var min; if (min !== 0) min = min || -Infinity;
         var max; if (max !== 0) max = max || Infinity;
         var result;
@@ -75,7 +75,7 @@
         return result;
     },
     
-   this.isValidPassword = function(parstring) {
+   cornObject.isValidPassword = function(parstring) {
        var arr = [];
        arr.push(parstring.length >= 9);
        arr.push(Boolean(parstring.match(/[a-z]/g)) && Boolean((parstring.match(/[A-Z]/g))));
@@ -85,7 +85,7 @@
        return arr[0] && arr[1] && arr[2] && arr[3];
    },
     
-    this.promptPassword = function(messagestr) {
+    cornObject.promptPassword = function(messagestr) {
         var result = "";
         var inx = 0;
         do {
@@ -100,7 +100,7 @@
         return result;
     }, 
     
-    this.sort = function(parArray1) {
+    cornObject.sort = function(parArray1) {
         var array1 = parArray1.slice();
         let maxindex = parArray1.length;
         let result = [];
@@ -139,19 +139,19 @@
 //    },
 
 
-    isRightTriangle = function(par1, par2, par3) {
+    cornObject.isRightTriangle = function(par1, par2, par3) {
         var arr = [par1, par2, par3];
         arr.sort(function(a,b){return parseInt(a) > parseInt(b);});
         return arr[2] == arr[1] + arr[0];
     },
 
 
-    isBissextile = function(par1) {
+    cornObject.isBissextile = function(par1) {
         return !((par1 % 4) || (!(par1 % 100) && (par1 % 400)));
     },
 
 
-    isPalindrome = function(str) {
+    cornObject.isPalindrome = function(str) {
         //console.log(str);
         str = str.replace(/[\,\.\s]/g, "").toLowerCase();
         //console.log(str);
@@ -170,7 +170,7 @@
         return !i;
     },  
 
-    closeModalScreen = function() {
+    cornObject.closeModalScreen = function() {
         $('.modal-screen').addClass("superhiddenclass");
         $('.modal-massage__text').empty();
         $('.modal-massage__text').attr('class','modal-massage__text');
@@ -178,7 +178,7 @@
     },
         
 //        For lesson-7
-    this.getMinInArray = function(pararray) {
+    cornObject.getMinInArray = function(pararray) {
         let result = pararray[0];
         let arrlength = pararray.length;
         for (let i = 1; i < arrlength; i++) {
@@ -187,7 +187,7 @@
         return result;
     },
         
-    this.getMaxInArray = function(pararray) {
+    cornObject.getMaxInArray = function(pararray) {
         let result = +pararray[0];
         let arrlength = pararray.length;
         for (let i = 1; i < arrlength; i++) {
@@ -196,7 +196,7 @@
         return result;
     },
         
-    this.getArithmeticAverage = function(pararray) {
+    cornObject.getArithmeticAverage = function(pararray) {
         let sumresult = 0;
         let arrlength = pararray.length;
         for (let i = 0; i < arrlength; i++) {
@@ -205,7 +205,7 @@
         return sumresult / arrlength;
     },
         
-    this.clone = function(pararray) {
+    cornObject.clone = function(pararray) {
         let resarray = [];
         let arrlength = pararray.length;
         for (let i = 0; i < arrlength; i++) {
