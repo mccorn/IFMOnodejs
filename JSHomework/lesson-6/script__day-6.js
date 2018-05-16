@@ -48,7 +48,7 @@ function genarateArrayRndNum(min, max) {
     return function() {
         if (result.length >= max - min + 1) result = [];
         do  {
-            var elem = rndRound(min, max);
+            var elem = corn.rndRound(min, max);
         } while (result.indexOf(elem) !== -1);
         result.push(elem);
         return elem;
@@ -75,7 +75,7 @@ function genarateArray(min, max) {
     return function() {
        if (result.length >= max - min + 1) result = [];
         do  {
-            var elem = rndRound(min, max);
+            var elem = corn.rndRound(min, max);
         } while (result.indexOf(elem) !== -1);
         result.push(elem);
         return elem;
