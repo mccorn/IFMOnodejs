@@ -89,7 +89,7 @@ function toCezarString(str, key) {
     }
     return result;
 }
-
+//parkey
 function toCezarChar(char, parkey) {
     let charcode = char.charCodeAt();
     let key = parkey % 26;
