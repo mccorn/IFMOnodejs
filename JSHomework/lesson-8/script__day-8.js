@@ -6,14 +6,37 @@ var arr_1 = [1, 1, 2, 3, 5, 8, 13, 21];
 var arr_2 = [100, 2, 32, 5, 8, 113, 21];
 
 let product = {
-    article: 'article_122100',
-    photoURL: '',
-    properties: [],
-    Product: function() {
-        this.article = arguments[0];
-        this.photoURL = arguments[1];
-        this.properties = arguments[2].slice();
-    }
+    article: '232300',
+    photoURL: 'img/choco.jpg',
+    properties: [12, 23, 'sweety'],
+    showProduct: function(somedivID) {
+        let somediv = document.getElementById(somedivID);
+        console.log(document.placeholder);
+        somediv.innerHTML = "";
+        somediv.setAttribute('class','product');
+        somediv.img = document.createElement('div');
+        somediv.img.setAttribute('class','product-image');
+        somediv.img.setAttribute('style',`background-image: url(${this.photoURL})`);
+        somediv.append(somediv.img);
+
+        somediv.article = document.createElement('span');
+        somediv.article.setAttribute('class','product-title');
+        somediv.article.innerHTML = this.article;
+        somediv.append(somediv.article);
+
+        somediv.properties = document.createElement('p');
+        somediv.properties.setAttribute('class','product-description');
+        somediv.properties.innerHTML = this.properties.join(', ');
+        somediv.append(somediv.properties);
+
+        return somediv;
+    },
+//    Product: function() {
+//        this.article = arguments[0];
+//        this.photoURL = arguments[1];
+//        this.properties = arguments[2].slice();
+//        this.showProduct = product.showProduct();
+//    },
 };
 let idTimer;
 
@@ -38,8 +61,9 @@ function testTask_2() {
     let placeholder = document.getElementById('placeholder');
     clearInterval(idTimer);
     placeholder.innerHTML = '';
-    let chocolateProduct = new product.Product('232300', 'img/choco.jpg', [12, 23, 'sweety']);
-    showProduct('placeholder', chocolateProduct);
+//    let chocolateProduct = new product.Product('0000', 'img/choco.jpg', [10, 03, '000sweety']);
+//    
+    product.showProduct('placeholder');
 };
 let count = 0;
 function testTask_3() {
@@ -56,34 +80,7 @@ function testTask_4() {
     
 };
 
-function showProduct(somedivID, someproduct) {
-    let somediv = document.getElementById(somedivID);
-    somediv.innerHTML = "";
-    somediv.setAttribute('class','product');
-//    somediv.article = document.createElement('h3');
-//    somediv.img = document.createElement('div');
-//    somediv.properties = document.createElement('p');
-//    somediv.article.innerHTML = (someproduct.article);
-//    somediv.img.innerHTML =(someproduct.article);
-//    somediv.properties.innerHTML =(someproduct.article);
-//    document.appendChild(somediv);
-    somediv.img = document.createElement('div');
-    somediv.img.setAttribute('class','product-image');
-    somediv.img.setAttribute('style',`background-image: url(${someproduct.photoURL})`);
-    somediv.append(somediv.img);
-    
-    somediv.article = document.createElement('span');
-    somediv.article.setAttribute('class','product-title');
-    somediv.article.innerHTML = someproduct.article;
-    somediv.append(somediv.article);
-    
-    somediv.properties = document.createElement('p');
-    somediv.properties.setAttribute('class','product-description');
-    somediv.properties.innerHTML = someproduct.properties.join(', ');
-    somediv.append(somediv.properties);
-    
-    return somediv;
-};
+
 
 function showTrafficLights(somediv){
     let trafficLights = document.getElementById(somediv);
