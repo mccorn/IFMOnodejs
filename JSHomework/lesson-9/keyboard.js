@@ -7,9 +7,7 @@ window.onload = function() {
         if (!keyboardarray.includes(event.keyCode)) {
             addKey(event);    
         };
-        if (keyChar.match('\/d*/w*\g') == 0) {
-            screen.textContent = event.keyCode;
-        } else screen.textContent =  keyChar;
+        if (keyChar.match(/\w/)) screen.textContent = keyChar; else screen.textContent = event.keyCode;
     };
     function addKey(event) {
         let screen = document.getElementById('screen');
@@ -17,10 +15,10 @@ window.onload = function() {
         let keyDiv =  document.createElement('div');
         let keyChar = String.fromCharCode(event.keyCode);
         keyDiv.classList.add('key');
-        keyDiv.textContent = keyChar;
+        if (keyChar.match(/\w/)) keyDiv.textContent = keyChar; else keyDiv.textContent = event.keyCode;
         keyboardarray.push(event.keyCode);
         keyboard.append(keyDiv);
-        console.log(event.keyCode.toString());
+//        console.log(event.keyCode.toString());
     };
 };
 
