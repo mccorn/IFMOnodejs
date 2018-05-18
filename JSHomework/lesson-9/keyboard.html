@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard</title>
+    
+    <script src="../js/cornscript.js" charset="utf-8"></script>
+    <script src="keyboard.js" charset="utf-8"></script>   
+    
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .screen {
+            border: 2px solid #666;  
+            height: 100px;
+            width: 100px;
+            margin: auto;
+            font-size: 5rem;
+            text-align: center;
+        }
+        
+        .keyboard {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            
+            background: #ccc;
+        }
+        
+        .key {
+            width: 40px;
+            height: 35px;
+            border: 2px solid #66f;
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper" class="wrapper">
+        <div id="screen" class="screen">
+            
+        </div>
+        <div id="keyboard" class="keyboard">
+        </div>
+    </div>
+    
+    
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Homework: Lesson #8</title>
+    <title>Homework: Lesson #9</title>
     
     <link href="../css/styles.css" rel="stylesheet">
     
@@ -12,11 +12,40 @@
     </script>
     
     <script src="../js/cornscript.js" charset="utf-8"></script>
-    <script src="script__day-8.js" charset="utf-8"></script>   
+    <script src="script__day-9.js" charset="utf-8"></script>   
        
 </head>
 <style>
+    .square {
+        height: 50px;
+        width: 50px;
+        border: 2px solid #66f;
+        margin: auto;
+    } 
     
+    .square:nth-child(1) {
+        background: #ff6;
+    }
+    
+    .square:nth-child(2) {
+        background: #6ff;
+    }
+    
+    .square:nth-child(3) {
+        background: #f6f;
+    }
+    
+    .square:nth-child(4) {
+        background: #ddd;
+    }
+    
+    .square-actived {
+        height: 50px;
+        width: 50px;
+        border: 2px solid #66f;
+        margin: auto;
+        background: #4f4;
+    }
 </style>
 <body>
     <div class="wrapper">
@@ -35,30 +64,30 @@
         </div>
         <div class="header">
            <div class = "arrow-left arrow menu__nav-item">
-              <a href="../lesson-7/homework__day-7.html"></a>
+              <a href="../lesson-8/homework__day-8.html"></a>
            </div>
            <div class = "gohome menu__nav-item">
                 <a href="../index.html"></a>
             </div>
            <div class = "arrow-right arrow menu__nav-item">
-              <a href="../lesson-9/homework__day-9.html"></a>
+              <a href="../lesson-10/homework__day-10.html" disabled></a>
            </div>
         </div>
         <div class="content">
             <div class="button-list">
-            <button onclick="testTask_1()">
-                Task #1: showTime();
+            <button onclick="testTask_1(event)">
+                Task #1: onClickSquareToggleBgColor();
             </button>
-            <button onclick="testTask_2()">
-                Task #2: showProduct('placeholder', chocolateProduct);
+            <button onclick="testTask_2(event)">
+                Task #2: clickCounter() : 
             </button>
             <button onclick="testTask_3()">
-                Task #3: showTrafficLights('placeholder'); 
+                <a href="keyboard.html" target="_blank">
+                    Task #3: keyboard
+                </a>   
             </button>
-            <button>
-                <a href="square.html" target="_blank">
-                    Task #4: square.html
-                </a>
+            <button onclick="testTask_4()">
+                Task #4: 
             </button>
             
             <div id="placeholder"></div>
