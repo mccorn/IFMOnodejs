@@ -7,9 +7,18 @@
         Student: function() {
             this.name = arguments[0] || 'Student.name';
             this.coursesList = [];
-            this.addStudent = function(somecourse) {
-                if (somecourse instanceof university.Course) this.coursesList.push(somecourse);
+            this.addCourse = function(somecourse) {
+                if (somecourse instanceof university.Course) {
+                    this.coursesList.push(somecourse);
+                    somecourse.studentsList.push(this);
+                }
                 return somecourse;
+            };
+            this.finishCourse = function(somecourse) {
+                if (somecourse instanceof university.Course) {              
+                    this.coursesList.splice(this.coursesList.indexOf(somecourse));
+                    somecourse.studentsList.splice(somecourse.studentsList.indexOf(this),1);
+                }
             };
         },
         
@@ -24,6 +33,12 @@
             this.addStudent = function(somestudent) {
                 if (somestudent instanceof university.Student) this.studentsList.push(somestudent);
             };
+            this.finishCourse = function(somecourse) {
+                if (somecourse instanceof university.Course) {              
+                    this.coursesList.splice(this.coursesList.indexOf(somecourse));
+                    somecourse.teachersList.splice(somecourse.teachersList.indexOf(this),1);
+                }
+            };
         },
         
         addTeacher: function() {
@@ -33,9 +48,12 @@
         Course: function() {
             this.name = arguments[0] || "Course #" + university.coursesList.length;
             this.teacher = arguments[1] || "Anonymous teacher";
-            this.studentsList = arguments[2] || []; 
+            this.studentsList = []; 
             this.addStudent = function(somestudent) {
-                if (somestudent instanceof university.Student) this.studentsList.push(somestudent);
+                if (somestudent instanceof university.Student) {
+                    this.studentsList.push(somestudent);
+                    somestudent.coursesList.push(this);
+                }
             };
         },
         
@@ -58,4 +76,18 @@
 //    university.addStudent(studentAndrew);
 //    university.addTeacher(teacherSasha);
 //    university.addCourse(courseNodeJS);
+
+//let courseNodeJS = new university.Course('NodeJS',1,2,3,4);
+//let courseVueJS = new university.Course('VueJS',1,2,3,4);
+//
+//let studentS = new university.Student('Sasha',1,2,3,4);
+//let studentPeter = new university.Student('Peter');
+//let studentAndrew = new university.Student('Andrew');
+//
+//courseVueJS.addStudent(studentS);
+//courseVueJS.addStudent(studentPeter);
+//courseVueJS.addStudent(studentAndrew);
+//
+//courseNodeJS.addStudent(studentS);
+//courseNodeJS.addStudent(studentAndrew);
 

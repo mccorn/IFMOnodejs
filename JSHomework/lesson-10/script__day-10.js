@@ -44,10 +44,7 @@ function BasketProducts() {
     this.addProduct = function() {
         if (arguments[0] instanceof Product) {
             this.productsArray.push(arguments[0]);
-        } else {
-            let someproduct = new Product(arguments[0], arguments[1])
-            this.productsArray.push(someproduct);
-        };     
+        };   
     };
     this.toPrint = function() {
         let arrlength = this.productsArray.length; 
@@ -137,7 +134,6 @@ function testTask_3() {
 function testTask_4() {
     
 };
-
 
 function testTask_5() {
     
