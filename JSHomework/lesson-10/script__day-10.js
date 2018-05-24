@@ -81,7 +81,7 @@ function Human() {
 };
 
 function Student() {
-    Human.call(this);
+    Human.call(this, ...arguments);
     this._university = arguments[4] || 'Student._university';
     
     this.toString = function() {
