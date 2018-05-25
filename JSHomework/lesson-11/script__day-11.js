@@ -285,14 +285,18 @@ Table.prototype.sortRows = function(keyInx){
 
 //testTable._rows.sort(function(a,b){return a._ceils[1] > b._ceils[1];}).toString()
 
-Table.prototype.sortByKey = function(keyIndex, keyType) {
+Table.prototype.sortByKey = function(keyIndex) {
+    
+    let keyType = typeof(this._rows[0]._ceils[keyIndex].valueOf());
     switch (keyType) {
-        case ('String'): {
-            this._rows.sort(function(a,b){return a._ceils[keyIndex].valueOf().toString().toLowerCase() > b._ceils[keyIndex].valueOf().toString().toLowerCase();});
+        case ('string'): {
+            this._rows.sort(function(a,b){
+                return a._ceils[keyIndex].valueOf().toString().toLowerCase() > b._ceils[keyIndex].valueOf().toString().toLowerCase();
+            });
             break;   
         };
-        case ('Boolean'): 
-        case ('Number'):
+        case ('boolean'): 
+        case ('number'):
         default :{
             this._rows.sort(function(a,b){return (a._ceils[keyIndex].valueOf()) > (b._ceils[keyIndex].valueOf());})  
             break; 
