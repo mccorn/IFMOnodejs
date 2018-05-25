@@ -189,6 +189,7 @@ TitleRow.prototype.print = function(divTable) {
     divRow.classList.add('row');
     divRow.classList.add('title__row');
     divRow.id = ('title__row');
+    divRow.setAttribute('onclick', 'sortTable(event, testTable)');
     this._ceils.forEach(function(someCeil, idx, arr){
         someCeil.print(divRow, true, 100 / arr.length);    
     });
@@ -301,27 +302,28 @@ Table.prototype.sortByKey = function(keyIndex, keyType) {
     return this;
 }
 
+ sortTable = function(someevent, someTable) {
+    etarget = someevent.target;  
+    let keyVal = etarget.dataset['info'];
+    let keyInx = someTable.
+                _titleRow.
+                valueOf().
+                indexOf(keyVal);
+    someTable.sortByKey(keyInx);
+    someTable.render();
+    return;
+};
+
 window.onload = function() {
     testTable.print();   
     let titleRowDOM = document.getElementById('title__row');
     let placeholderDOM = document.getElementById('placeholder');
-    titleRowDOM.onclick = sortTable;
-    placeholderDOM.onclick = clicker;
-    function clicker(someevent) {
-        alert('CLICKER');
-    };
-    function sortTable(someevent) {
-        alert('click');
-        etarget = someevent.target;  
-        let keyVal = etarget.dataset['info'];
-        let keyInx = testTable.
-                    _titleRow.
-                    valueOf().
-                    indexOf(keyVal);
-        testTable.sortByKey(keyInx);
-        testTable.render();
-        return;
-    };
+//    titleRowDOM.onclick = sortTable;
+//    placeholderDOM.onclick = clicker;
+//    function clicker(someevent) {
+//        alert('CLICKER');
+//    };
+    
     
 };
 
