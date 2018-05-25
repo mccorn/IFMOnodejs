@@ -99,15 +99,19 @@ Student.prototype.__proto__ = Human.prototype;
 function Table() {
     this._width = 0;
     this._height = 0;
+    this._titleRow = {};
     this._rows = [];
 };
 
 Table.prototype.addRow = function(someRow) {
-    this._rows.push(someRow);
+    if (someRow instanceof TitleRow) {
+        this._titleRow = someRow;  
+        return;
+    } else this._rows.push(someRow);
     if (this._rows.length === 1) {
         this._width = someRow._width;
         this._height = 1;    
-    } else this._height++;;   
+    } else this._height++;   
 };
 
 Table.prototype.addRows = function(someRowsArray) {
@@ -121,6 +125,9 @@ Table.prototype.print = function() {
     divTable.classList.add('table');
     let place = document.getElementById('placeholder');
     place.innerHTML = '';
+    if (this._titleRow instanceof TitleRow && this._titleRow._width) {
+        this._titleRow.print(divTable);    
+    }
     this._rows.forEach(function(someRow){
         someRow.print(divTable);    
     });
@@ -133,21 +140,14 @@ Table.prototype.render = function() {
     this.print();
 };
 
-Table.prototype.sort = function(key) {
-    let flag = true;
-    let col = this._rows[0]._ceils.indexOf(key);
-    console.log(col);
-    for (let i = 1; i < this._height; i++) {
-//        console.log(this._rows[i]._ceils);    
-    }
-}
+Table.prototype.toString = function() {
+    return  this._titleRow.toString() + '\n' + this._rows.toString();
+};
 
 function Row() {
     this._width = 0;
     this._ceils = [];
 };
-
-
 
 Row.prototype.addCeil = function(someCeil) {
     this._ceils.push(someCeil);
@@ -167,7 +167,18 @@ Row.prototype.print = function(divTable) {
         someCeil.print(divRow, false, 100 / arr.length);    
     });
     divTable.append(divRow);
-}
+};
+
+Row.prototype.valueOf = function() {
+    return this._ceils.map(function(el){
+        return el._value;
+        console.log(el._value);
+    });
+};
+
+Row.prototype.toString = function() {
+    return this._ceils.toString() + '\n';
+};
 
 function TitleRow() {
     Row.call(this, ...arguments);
@@ -200,6 +211,14 @@ Ceil.prototype.print = function(divRow, flag, size) {
     divCeil.textContent = this._value;
     divRow.append(divCeil);
 };
+
+Ceil.prototype.valueOf = function() {
+    return this._value;
+}
+
+Ceil.prototype.toString = function() {
+    return this._value.toString();
+}
 
 Ceil.prototype.__proto__ = Row.prototype;
 TitleRow.prototype.__proto__ = Row.prototype;
@@ -238,16 +257,66 @@ row_4.addCeils([ceil_Name4, ceil_Price4, ceil_isInStock4]);
 titleRow.addCeils([ceil_Title1, ceil_Title2, ceil_Title3]);
 
 let testTable = new Table();
+let testTable2 = new Table();
 testTable.addRows([titleRow, row_1, row_2, row_3, row_4]);
+
+Table.prototype.sortRows = function(keyInx){
+    let result = [];
+    
+    for (let i = 0; i < this._rows.length; i++) {
+        console.log(result+'');
+        let minEl = this._rows[i]._ceils[keyInx];
+        let rowWithMin = this._rows[i];
+        for (let j = i+1; j < this._rows.length; j++) {
+            if (+this._rows[j]._ceils[keyInx] < +minEl) 
+            {
+                console.log(i + " | " + j + ')' + this._rows[j]._ceils[keyInx] + "<" + minEl + " = " + (this._rows[j]._ceils[keyInx] < +minEl));
+                rowWithMin = this._rows[j];
+                minEl = +this._rows[0]._ceils[keyInx]; 
+            }   
+        }
+        result.push(rowWithMin); 
+    };
+    this._rows = result;
+    this.render();
+    return result;
+};
+
+//testTable._rows.sort(function(a,b){return a._ceils[1] > b._ceils[1];}).toString()
+
+Table.prototype.sortByKey = function(keyIndex, keyType) {
+    switch (keyType) {
+        case ('String'): {
+            this._rows.sort(function(a,b){return a._ceils[keyIndex].valueOf().toString().toLowerCase() > b._ceils[keyIndex].valueOf().toString().toLowerCase();});
+            break;   
+        };
+        case ('Boolean'): 
+        case ('Number'):
+        default :{
+            this._rows.sort(function(a,b){return (a._ceils[keyIndex].valueOf()) > (b._ceils[keyIndex].valueOf());})  
+            break; 
+        }       
+    }
+    
+    return this;
+}
 
 window.onload = function() {
     testTable.print();   
-    title__row.onclick = function(event) {
-//        etarget = event.target;  
-//        console.dir(this.childNodes);
-//        console.log(this.index(etarget));
-//        testTable.sort(etarget.dataset['info']);
-    }
+    let titleRowDOM = document.getElementById('title__row');
+    titleRowDOM.onclick = sortTable;
+    function sortTable(someevent) {
+        alert('click');
+        etarget = someevent.target;  
+        let keyVal = etarget.dataset['info'];
+        let keyInx = testTable.
+                    _titleRow.
+                    valueOf().
+                    indexOf(keyVal);
+        testTable.sortByKey(keyInx);
+        testTable.render();
+    };
+    
 };
 
 function testTask_3() {
@@ -261,3 +330,4 @@ function testTask_4() {
 function testTask_5() {
     
 };
+
