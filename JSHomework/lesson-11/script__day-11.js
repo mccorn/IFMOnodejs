@@ -304,7 +304,12 @@ Table.prototype.sortByKey = function(keyIndex, keyType) {
 window.onload = function() {
     testTable.print();   
     let titleRowDOM = document.getElementById('title__row');
+    let placeholderDOM = document.getElementById('placeholder');
     titleRowDOM.onclick = sortTable;
+    placeholderDOM.onclick = clicker;
+    function clicker(someevent) {
+        alert('CLICKER');
+    };
     function sortTable(someevent) {
         alert('click');
         etarget = someevent.target;  
@@ -315,6 +320,7 @@ window.onload = function() {
                     indexOf(keyVal);
         testTable.sortByKey(keyInx);
         testTable.render();
+        return;
     };
     
 };

@@ -100,22 +100,24 @@ function User() {
     this._id ; //: 10000001,
     this._location; // : 'de',
     this._age;//  18; 
-    this.setUser = function() {
-        this._name = arguments[0] || 'User._name';
-        this._id = arguments[1] || 10000002;
-        this._location = arguments[2] || 'ru';
-        this._age = arguments[3] || 20;
-    };
-    this.setAnonymousUser = function() {
-        this._name = 'User._anonym';
-        this._id = 10000003;
-        this._location = arguments[2] || 'en';
-        this._age = arguments[3] || 22;
-    };
-    this.toString = function(){
-        return this._name;
-    }
+   
 };
+
+ User.setUser = function() {
+    this._name = arguments[0] || 'User._name';
+    this._id = arguments[1] || 10000002;
+    this._location = arguments[2] || 'ru';
+    this._age = arguments[3] || 20;
+};
+User.setAnonymousUser = function() {
+    this._name = 'User._anonym';
+    this._id = 10000003;
+    this._location = arguments[2] || 'en';
+    this._age = arguments[3] || 22;
+};
+User.toString = function(){
+    return this._name;
+}
 
 let user_1 = new User();
 let user_2 = new User;
