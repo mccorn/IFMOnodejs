@@ -2,49 +2,50 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Homework: Lesson #10</title>
+    <title>Homework: Lesson #11</title>
     
     <link href="../css/styles.css" rel="stylesheet">
     
+<!--
     <script src="../js/jquery-1.12.4.min.js" charset="utf-8">
     </script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
     </script>
+-->
+<!--
     
     <script src="../js/cornscript.js" charset="utf-8"></script>
-    <script src="script__day-10.js" charset="utf-8"></script>
-    <script src="university.js" charset="utf-8"></script>  
+-->
+    <script src="script__day-11.js" charset="utf-8"></script>
+<!--    <script src="university.js" charset="utf-8"></script>  -->
 </head>
 <style>
-    .square {
-        height: 50px;
-        width: 50px;
-        border: 2px solid #66f;
-        margin: auto;
-    } 
-    
-    .square:nth-child(1) {
-        background: #ff6;
+    .table {
+        display: flex;
+        flex-direction: column;
+        width: 100%; 
     }
     
-    .square:nth-child(2) {
-        background: #6ff;
+    .row {
+        display: flex;
+        width: 100%;  
     }
     
-    .square:nth-child(3) {
-        background: #f6f;
+    .row:nth-child(2n-1) {
+        background: #eee;  
+        
     }
     
-    .square:nth-child(4) {
-        background: #ddd;
+    .row.title__row {
+        background: #fcc;
     }
     
-    .square-actived {
-        height: 50px;
-        width: 50px;
-        border: 2px solid #66f;
-        margin: auto;
-        background: #4f4;
+    .ceil {
+        display: block;
+        min-width: 50px;
+        min-height: 30px;
+        text-align: center;
+        border: 1px solid black;  
     }
 </style>
 <body>
@@ -64,14 +65,11 @@
         </div>
         <div class="header">
            <div class = "arrow-left arrow menu__nav-item">
-              <a href="../lesson-9/homework__day-9.html"></a>
+              <a href="../lesson-10/homework__day-10.html"></a>
            </div>
            <div class = "gohome menu__nav-item">
                 <a href="../index.html"></a>
             </div>
-           <div class = "arrow-right arrow menu__nav-item">
-              <a href="../lesson-11/homework__day-11.html"></a>
-           </div>
         </div>
         <div class="content">
             <div class="button-list">
@@ -82,16 +80,12 @@
                 Task #2: 
             </button>
             <button onclick="testTask_3()">
-                <a href="keyboard.html" target="_blank">
-                    Task #3: 
-                </a>   
+                    Task #3:   
             </button>
             <button onclick="testTask_4()">
                 Task #4: 
             </button>
-            <button onclick="testTask_5()">
-                Task #5: 
-            </button>
+
             <div id="placeholder"></div>
         </div>
         <div class="crib-list">
