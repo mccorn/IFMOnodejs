@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <script src="index.js"></script>
+    
+    <style>
+        #placeholder {
+            display: flex;
+            flex-wrap: wrap;
+            background: #f44;
+            width: 400px;
+            height: 400px;
+        }
+        
+        .ceil {
+            border: 2px solid black;
+            width: 9%;
+            height: 9%;
+        }
+        
+        
+        .ceil_shippart {
+            background: #0f0;
+        }
+        
+        .ceil_actived {
+            background: #44f;
+        }
+        
+        
+        .ceil_shippart::after {
+            content: "X";    
+        }
+    </style>
+</head>
+<body>
+   <div id = "placeholder">
+   </div> 
+</body>
+</html>
