@@ -8,14 +8,16 @@
     
     <style>
         #placeholder {
+            position: relative;
             display: flex;
             flex-wrap: wrap;
-            background: #f44;
+            background: #ccc;
             width: 400px;
             height: 400px;
         }
         
         .ceil {
+            position: relative;
             border: 2px solid black;
             width: 9%;
             height: 9%;
@@ -27,12 +29,42 @@
         }
         
         .ceil_actived {
-            background: #44f;
+            background: #449;
         }
         
+        .ceil_actived::after {
+            display: block;
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            content: "o";
+            margin: auto;
+            text-align: center;
+/*            font-size: 5rem;*/
+        }
         
         .ceil_shippart::after {
-            content: "X";    
+            display: block;
+            position: absolute;
+            content: "X";  
+            left: 40%;
+            top: 20%;
+        }
+        
+        .ceil_shippart.ceil_actived {
+            background: #f44;
+        }
+        
+        .ceil_plug {
+            background: #fff;
+        }
+        
+        .hidden {
+            background: #666;    
+        }
+        
+        .hidden::after {
+            display: none;
         }
     </style>
 </head>
