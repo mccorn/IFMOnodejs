@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    function pause(func, num) {
+      return function(...arguments) {
+        console.log(`wait: ${num}s`);
+        setTimeout(function() {
+          func(...arguments)
+        }, num * 1000);  
+      }  
+    }
+    
+    function returnObject(func,...etc) {
+      return function(...arguments) {
+        let obj = func(...arguments);
+        let length = etc.length;
+        if (obj instanceof Array) {
+          let tmp = {};
+          for (let i = 0; i < length; i++) {
+            tmp[etc[i]] = obj[i];  
+          }  
+          obj = tmp;
+        }  
+        return obj;
+      }  
+    }
+    
+    let paused = pause(function() {alert('1')}, 3);
+    let returnObj = returnObject(function() {
+      return ['37', 38, '39', 40, false];
+    }, 'UP', 'RIGHT', 'DOWN', 'LEFT', 'crtlKey');
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
