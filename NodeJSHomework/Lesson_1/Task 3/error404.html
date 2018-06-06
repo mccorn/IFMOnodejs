@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>404: Static</title>
+  
+<!--  <link rel="stylesheet" src=''>-->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100vh;  
+      min-height: 400px;
+    }
+    
+    .errorscreen {
+      width: 100%;
+      height: 100vh;
+      background: url("../../../img/404_bg.jpg") center center no-repeat;
+      background-size: 50% 50%;
+    }
+    
+    .frog {
+      position: absolute;
+      left: 0;
+      top: calc(100% - 30vh);
+      width: 30vh;
+      height: 30vh;
+      background: url("../../../img/sad_frog.png") no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Task_3/error404.html</h1>
+    <div class="frog">
+    </div>  
+    <div class= "errorscreen">      
+    </div> 
+  </div>
+  
+</body>
+</html>

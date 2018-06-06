@@ -1,12 +1,12 @@
-//let http = require('http');
-//
-//let server = http.createServer(function(req, res) {
-//  console.log('HTTP works!');
-//  console.dir(res);
-//  console.dir(req);
-//});
-//
-//server.listen(8080);
+let http = require('http');
+
+let server = http.createServer(function(req, res) {
+  console.log('HTTP works!');
+  console.dir(res);
+  console.dir(req);
+});
+
+server.listen(8080);
 
 //let http = require('http');
 //
