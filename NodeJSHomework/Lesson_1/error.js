@@ -1,22 +1,23 @@
-let http = require('http');
-let fs = require('fs');
+var fs = require("fs");
+var http = require("http");
 
-const fileName = 'error/err404.html';
-//const errorName = 'lvahbwkyjbkjh.html';
-//const errFile404 = '404.html';
+function send404Response (response){
+    response.writeHead(302, {"Content-Type": "text/html"});
+    fs.createReadStream("./error/err404.html").pipe(response);
+}
 
+function onRequest (request, response){
+  switch (request.url){
+    case "/index.html":
+      response.writeHead(200, {"Content-Type": "text/html"});
+      fs.createReadStream("./Task 3/index.html").pipe(response);
+        break;
+    default:
+      send404Response(response);
+      break;
+  }
+}
 
-let server = http.createServer(function(req, res) {
-  fs.readFile(fileName, 'utf8', function(err, data){
-    if (err) {
-      console.log("Fatal error! File not find or open: " + err.stack);  
-    } else {
-      console.log(fileName);  
-      res.writeHead(200, {'Content-type' : 'text/html'});  
-      res.end(data);
-    }
-  });
-});
-
+let server = http.createServer(onRequest);
 server.listen(8000);
 console.log('error.js:: Server running: 8000');
