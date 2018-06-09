@@ -24,8 +24,9 @@ function rnd(min, max) {
 }
 
 let gen = generatePassword(15);
+let gen2 = generatePassword(5);
 
 console.log(gen.next().value);
 console.log(gen.next().value);
-console.log(gen.next().value);
-console.log(gen.next().value);
+console.log(gen2.next().value);
+console.log(gen2.next().value);
