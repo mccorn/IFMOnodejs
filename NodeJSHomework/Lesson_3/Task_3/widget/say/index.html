@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Widget</title>
+  
+  <link src="data.json" type="application/json"/>
+  <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+  <style>    
+    #widget {
+      position: absolute;
+/*      bottom: 25px;*/
+/*      right: 25px;*/
+      min-width: 200px;
+      min-height: 100px;
+      background: #eee;
+      border: 2px solid #99e;
+      color: #99e;
+      border-radius: 25px;
+      text-align: center;
+    }
+  </style>
+   
+  <script>
+    const responseData = {
+      type: 'GET',
+      url: 'localhost:3030/widget.js',
+      success: function(response) {
+        alert('GET: localhost:3030' + response.data); 
+      }
+    }
+    
+    window.onload = function() {
+      console.log('ready');
+      $.ajax(responseData);
+    }
+  </script>
+</head>
+<body>
+  <div id="widget">
+    <h3 id="widget__title">Date</h3>
+    <hr>
+    <span id="widget__info">Date.now();</span>  
+  </div>
+</body>
+</html>

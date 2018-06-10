@@ -4,6 +4,5 @@
 работу.
 Строка передачи данных через URL:
 localhost:8080?id=13007&code='delete from user'&isNaN=true
-localhost:8080?id=1&code='delete from user '
 Разбор параметров.
 var _get = url.parse(request.url, true).query;

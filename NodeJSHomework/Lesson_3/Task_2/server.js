@@ -11,7 +11,7 @@ var mimeTypes = require('./mt.js');
 //console.log(str);
 //console.log(str2);
 //  http://localhost:8010/camel_to_snake?name=someStringEveryBodyDanceNow&id=12&ver=2.1.13&author=mccorn
-//  /snake_to_camel?name='some_string_every_body_dance_now'
+//  http://localhost:8010/snake_to_camel?name='some_string_every_body_dance_now'
 
 
 let server = http.createServer(onRequest);
@@ -20,63 +20,22 @@ server.listen('8010');
 function onRequest(request, response) {
   var postData = "";
   var pathname = url.parse(request.url).path;
-  console.log(pathname);
   if(pathname == '/')
       pathname = '/index.html';
   var extname = path.extname(pathname);
   var mimeType = mimeTypes.list[extname];
   pathname = pathname.substring(1, pathname.length);
-//  console.log(pathname);
-//  console.dir(parseURL(pathname));
+  if (extname == '.ico') return;
   
   let obj = parseURL(pathname);
   let _get  = url.parse(request.url, true).query;
-  console.dir(_get);
   if (obj.method && obj.name) {
     let result = '';
-    switch (obj.method) {
-      case 'camel_to_snake': {
-        result = mod.camel_to_snake(obj.name); 
-        break;
-      } 
-      case 'snake_to_camel': {
-        result = mod.snake_to_camel(obj.name);
-        break;
-      }
-      default: {
-        let err = new Error(obj.method + " defined! =(");
-        throw err;
-      }
+    if (obj.method) {
+      let result = eval(`mod.${obj.method}('${obj.name}')`);
+      console.log('result(response.data) = ' + result);
+      response.end(result);
     }
-    console.log('res = ' + result);
-  }
-  
-  if( (extname == ".gif") || (extname==".jpg") ) {
-      var img = fs.readFileSync('./' + pathname);
-      response.writeHead(200, {'Content-Type': mimeType});
-      response.end(img, 'binary');
-  } else if (extname == ".json") {
-      fs.readFile(pathname, 'utf8', function (err, data){
-          if (err) {
-              console.log('Could not find or open file '+ 
-              pathname + ' for reading\n');
-          } else {
-              setTimeout(function(){
-                  response.writeHead(200, {'Content-Type': 'application/json'});
-                  response.end(data);
-              }, 5000);
-          }
-      });
-  } else {
-      fs.readFile(pathname, 'utf8', function (err, data){
-          if (err) {
-              console.log('Could not find or open file '+ 
-              pathname + ' for reading\n');
-          } else {
-              response.writeHead(200, {'Content-Type': mimeType});
-              response.end(data);
-          }
-      });
   }
 }
 
@@ -86,10 +45,8 @@ function parseURL(someURL) {
   let arr2 = arr[1].split('&');
   result.method = arr[0];
   let size = arr2.length;
-//  console.log('arr2 = ' + arr2);
   for(let i = 0; i < size; i++) {
     let tmp = arr2[i].split('=');
-//    console.log('tmp: ' + tmp);
     result[tmp[0]] = tmp[1].replace(/%27/ig, '');  
   }
   return result;
