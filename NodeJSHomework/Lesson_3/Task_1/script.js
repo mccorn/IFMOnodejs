@@ -8,30 +8,7 @@ function getFreeLand(totalSquare, partSquare) {
     let totalW = Math.sqrt(totalS / k);
     let totalH = totalW * k;
     
-    console.log('S = ' + totalS);
-    console.log(totalSquare[1]);
-    console.log('k = ' + k);
-    console.log('W = ' + totalW);
-    console.log('H = ' + totalH);
-    
-    console.log('w = ' + partSquare[0]);
-    console.log('h = ' + partSquare[1]);
-    
-    console.log('W / w = ' + totalW /  partSquare[0]);
-    console.log('H / h = ' + totalH / partSquare[1]);
-    
-    console.log('W % w = ' + totalW % partSquare[0]);
-    console.log('H % h = ' + totalH % partSquare[1]);
-   
-    let sizeW = Math.floor(totalW /  partSquare[0]);
-    let sizeH = Math.floor(totalH / partSquare[1]);
-    
-    console.log('sizeW = ' + sizeW);
-    console.log('sizeH = ' + sizeH);
-    
-    let result = totalS - (sizeW * partSquare[0]) * (sizeH * partSquare[1]);
-    console.log(result);
-    if (isNaN(k) || !isFinite(k)) {
+    if (isNaN(k) || !isFinite(k) || !k) {
       er = new Error('Error: totalSquare[1]: isNaN or isInfinite');
       throw er;
     }
@@ -55,6 +32,19 @@ function getFreeLand(totalSquare, partSquare) {
       er = new Error('Error: partSquare[0] (width) : resized!');
       throw er;        
     }
+    
+    console.log('S = ' + totalS);
+    console.log(totalSquare[1]);
+    console.log('k = ' + k);
+    console.log('W = ' + totalW);
+    console.log('H = ' + totalH);
+    
+    console.log('w = ' + partSquare[0]);
+    console.log('h = ' + partSquare[1]);
+    
+    let result = (totalS % (partSquare[0] * partSquare[1]));
+    console.log('FreeSquare = ' + result);
+    
     return result;
   } catch (err) {
     console.log(err.stack);

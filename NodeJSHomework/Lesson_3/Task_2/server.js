@@ -10,6 +10,9 @@ var mimeTypes = require('./mt.js');
 //let str2 = mod.snake_to_camel('some_string_every_body_dance_now');
 //console.log(str);
 //console.log(str2);
+//  http://localhost:8010/camel_to_snake?name=someStringEveryBodyDanceNow&id=12&ver=2.1.13&author=mccorn
+//  /snake_to_camel?name='some_string_every_body_dance_now'
+
 
 let server = http.createServer(onRequest);
 server.listen('8010');
@@ -23,19 +26,21 @@ function onRequest(request, response) {
   var extname = path.extname(pathname);
   var mimeType = mimeTypes.list[extname];
   pathname = pathname.substring(1, pathname.length);
-  console.log(pathname);
-  console.dir(parseURL(pathname));
+//  console.log(pathname);
+//  console.dir(parseURL(pathname));
   
-  let obj = parseURL(pathname)
+  let obj = parseURL(pathname);
+  let _get  = url.parse(request.url, true).query;
+  console.dir(_get);
   if (obj.method && obj.name) {
-    let res = '';
+    let result = '';
     switch (obj.method) {
       case 'camel_to_snake': {
-        res = mod.camel_to_snake(obj.name); 
+        result = mod.camel_to_snake(obj.name); 
         break;
       } 
       case 'snake_to_camel': {
-        res = mod.snake_to_camel(obj.name);
+        result = mod.snake_to_camel(obj.name);
         break;
       }
       default: {
@@ -43,7 +48,7 @@ function onRequest(request, response) {
         throw err;
       }
     }
-    console.log('res = ' + res);
+    console.log('res = ' + result);
   }
   
   if( (extname == ".gif") || (extname==".jpg") ) {
