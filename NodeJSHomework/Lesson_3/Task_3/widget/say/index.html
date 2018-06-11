@@ -9,12 +9,10 @@
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  
-  <style>    
+  <script src="widget.js"></script>
+  <style>  
     #widget {
       position: absolute;
-/*      bottom: 25px;*/
-/*      right: 25px;*/
       min-width: 200px;
       min-height: 100px;
       background: #eee;
@@ -23,28 +21,20 @@
       border-radius: 25px;
       text-align: center;
     }
+    .red {
+      color: red; 
+    }
   </style>
    
   <script>
-    const responseData = {
-      type: 'GET',
-      url: 'localhost:3030/widget.js',
-      success: function(response) {
-        alert('GET: localhost:3030' + response.data); 
-      }
-    }
-    
-    window.onload = function() {
-      console.log('ready');
-      $.ajax(responseData);
-    }
+//    window.onload = function () {
+//     new myWidget();
+//    } 
   </script>
 </head>
 <body>
-  <div id="widget">
-    <h3 id="widget__title">Date</h3>
-    <hr>
-    <span id="widget__info">Date.now();</span>  
+  <div id="wrapper">
+    WRAPPER!
   </div>
 </body>
 </html>

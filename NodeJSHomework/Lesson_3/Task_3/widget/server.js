@@ -21,47 +21,44 @@ let server = http.createServer(onResponse);
 server.listen(3030);
 
 function onResponse(request, response) {
-  console.log(3030 + ' started!');
-  console.log(request.url);
+  var postData = "";
+  var pathname = url.parse(request.url).path;
   
+  if(pathname == '/') {
+    pathname = './say/index.html';  
+  } else {
+    pathname = './say' + pathname;  
+  }
+  
+  var extname = path.extname(pathname);
+  var mimeType = mimeTypes[extname];
+
   console.log(request.method);
+  console.log(pathname);
+  if( (extname == ".gif") || (extname==".jpg") ) {
+    fs.readFile(pathname, 'utf8', getFileBinary);
+  } else {
+    fs.readFile(pathname, 'utf8', getFile);
+  }
 	
-	var postData = "";
-	var pathname = url.parse(request.url).path;
-	if(pathname == '/')
-		pathname = '/say/index.html';
-	var extname = path.extname(pathname);
-	var mimeType = mimeTypes[extname];
-	//чтобы убрать начальный слэш
-	pathname = pathname.substring(1, pathname.length);
+  function getFile(err, data) {
+    if (err) {
+      console.log('Could not find or open file '+ 
+      pathname + ' for reading\n');
+    } else {
+      response.writeHead(200, {'Content-Type': mimeType});
+      response.end(data);
+    };
+  };
+  
+  function getFileBinary(err, data) {
+    var img = fs.readFileSync('' + pathname);
+    response.writeHead(200, {'Content-Type': mimeType});
+    response.end(img, 'binary');
+  };
+
+  
 	
-	if( (extname == ".gif") || (extname==".jpg") ) {
-		var img = fs.readFileSync('./' + pathname);
-		response.writeHead(200, {'Content-Type': mimeType});
-		response.end(img, 'binary');
-	} else if (extname == ".json") {
-		fs.readFile(pathname, 'utf8', function (err, data){
-			if (err) {
-				console.log('Could not find or open file '+ 
-				pathname + ' for reading\n');
-			} else {
-				response.writeHead(200, {
-                  'Content-Type': 'application/json',
-                  'Access-Control-Allow-Origin': '*'});
-				response.end(data);
-			}
-		});
-	} else {
-		fs.readFile(pathname, 'utf8', function (err, data){
-			if (err) {
-				console.log('Could not find or open file '+ 
-				pathname + ' for reading\n');
-			} else {
-				response.writeHead(200, {'Content-Type': mimeType});
-				response.end(data);
-			}
-		});
-	}
 
 //  setInterval(function(){
 //    let data = Date.now();

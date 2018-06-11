@@ -2,6 +2,9 @@ var http = require("http");
 var fs = require('fs');
 var url = require("url");
 var path = require('path');
+//var xhr = require('xmlhttprequest');
+var getrequest = require('request');
+
 
 var mimeTypes = {
   '.js' : 'text/javascript',
@@ -13,45 +16,59 @@ var mimeTypes = {
   '.json' : 'application/json',
 };
 
-http.createServer(function onRequest(request, response) {
+let server = http.createServer(function onRequest(request, response) {
+  var postData = "";
+  var pathname = url.parse(request.url).path;
+  
+  if (pathname == '/say') {
+    let dataResp = makeRequest('http://localhost:3030/data.json');  
+    response.end(dataResp.body);
+  } else if(pathname == '/') {
+    pathname = './webpage/index.html';  
+  } else {
+    pathname = './webpage' + pathname;  
+  }
+  
+  var extname = path.extname(pathname);
+  var mimeType = mimeTypes[extname];
+
+  console.log(request.method);
+  console.log(pathname);
+  if( (extname == ".gif") || (extname==".jpg") ) {
+    fs.readFile(pathname, 'utf8', getFileBinary);
+  } else {
+    fs.readFile(pathname, 'utf8', getFile);
+  }
 	
-	console.log(request.method);
-	
-	var postData = "";
-	var pathname = url.parse(request.url).path;
-	if(pathname == '/')
-		pathname = '/index.html';
-	var extname = path.extname(pathname);
-	var mimeType = mimeTypes[extname];
-	//чтобы убрать начальный слэш
-	pathname = './webpage/' + pathname.substring(1, pathname.length);
-	console.log(pathname);
-	if( (extname == ".gif") || (extname==".jpg") ) {
-		var img = fs.readFileSync('./webpage/' + pathname);
-		response.writeHead(200, {'Content-Type': mimeType});
-		response.end(img, 'binary');
-	} else if (extname == ".json") {
-		fs.readFile(pathname, 'utf8', function (err, data){
-			if (err) {
-				console.log('Could not find or open file '+ 
-				pathname + ' for reading\n');
-			} else {
-				setTimeout(function(){
-					response.writeHead(200, {'Content-Type': 'application/json'});
-					response.end(data);
-				}, 5000);
-			}
-		});
-	} else {
-		fs.readFile(pathname, 'utf8', function (err, data){
-			if (err) {
-				console.log('Could not find or open file '+ 
-				pathname + ' for reading\n');
-			} else {
-				response.writeHead(200, {'Content-Type': mimeType});
-				response.end(data);
-			}
-		});
-	}
-	
+  function getFile(err, data) {
+    if (err) {
+      console.log('Could not find or open file '+ 
+      pathname + ' for reading\n');
+    } else {
+      response.writeHead(200, {'Content-Type': mimeType});
+      response.end(data);
+    };
+  };
+  
+  function getFileBinary(err, data) {
+    var img = fs.readFileSync('' + pathname);
+    response.writeHead(200, {'Content-Type': mimeType});
+    response.end(img, 'binary');
+  };
+  
+  
+//  http://localhost:3030/say/script.js
 }).listen(7000);
+
+function makeRequest(somePath) {
+  console.log('makeReq');  
+  // (1)
+  let data = getrequest(somePath, function (error, response, body) {
+    console.log('error:', error); 
+    console.log('statusCode:', response && response.statusCode); 
+    console.log('body:', body);
+    return response.body;
+  });
+  return data;
+}
+

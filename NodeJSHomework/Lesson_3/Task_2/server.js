@@ -47,7 +47,7 @@ function parseURL(someURL) {
   let size = arr2.length;
   for(let i = 0; i < size; i++) {
     let tmp = arr2[i].split('=');
-    result[tmp[0]] = tmp[1].replace(/%27/ig, '');  
+    result[tmp[0]] = tmp[1].replace(/%27/ig, '').replace(/%22/ig, '');  
   }
   return result;
 }
