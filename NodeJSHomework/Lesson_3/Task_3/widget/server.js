@@ -22,19 +22,28 @@ server.listen(3030);
 
 function onResponse(request, response) {
   var postData = "";
-  var pathname = url.parse(request.url).path;
+  var pathname = url.parse(request.url);
+//  console.log(pathname);
+  pathname = pathname.path;
+//  console.log(pathname);
   
-  if(pathname == '/') {
-    pathname = './say/index.html';  
-  } else {
-    pathname = './say' + pathname;  
+  
+  if (request.method == 'GET') {
+    if(pathname == '/') {
+      pathname = './say/index.html';  
+    } else {
+      pathname = './say' + pathname;  
+    }
+  } else if (request.method == 'POST') {
+    pathname = '.' + pathname;
   }
   
   var extname = path.extname(pathname);
   var mimeType = mimeTypes[extname];
 
-  console.log(request.method);
-  console.log(pathname);
+//  console.log(request.method);
+//  console.log(request.url);
+//  console.log(pathname);
   if( (extname == ".gif") || (extname==".jpg") ) {
     fs.readFile(pathname, 'utf8', getFileBinary);
   } else {
@@ -46,7 +55,8 @@ function onResponse(request, response) {
       console.log('Could not find or open file '+ 
       pathname + ' for reading\n');
     } else {
-      response.writeHead(200, {'Content-Type': mimeType});
+      response.writeHead(200, {'Content-Type': mimeType,
+                              'Access-Control-Allow-Origin': '*'});
       response.end(data);
     };
   };
@@ -60,12 +70,12 @@ function onResponse(request, response) {
   
 	
 
-//  setInterval(function(){
-//    let data = Date.now();
-//    console.log('Date: ' + data);
-//    fs.writeFile('data.json', JSON.stringify(data), (err) => {
-//      if (err) throw err;
-//      console.log('data.json saved!');
-//    });
-//  }, 5000);
+  setInterval(function(){
+    let data = Date.now();
+    console.log('Date: ' + data);
+    fs.writeFile('data.json', JSON.stringify(data), (err) => {
+      if (err) throw err;
+      console.log('data.json saved!');
+    });
+  }, 5000);
 }

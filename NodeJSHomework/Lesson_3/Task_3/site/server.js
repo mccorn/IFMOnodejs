@@ -19,14 +19,26 @@ var mimeTypes = {
 let server = http.createServer(function onRequest(request, response) {
   var postData = "";
   var pathname = url.parse(request.url).path;
-  
-  if (pathname == '/say') {
-    let dataResp = makeRequest('http://localhost:3030/data.json');  
-    response.end(dataResp.body);
-  } else if(pathname == '/') {
-    pathname = './webpage/index.html';  
-  } else {
-    pathname = './webpage' + pathname;  
+  if (request.method == 'GET') {
+    console.log('GET: ' + pathname);
+    if(pathname == '/') {
+      pathname = './webpage/index.html';  
+    } else if(pathname == '/widget.js') {
+      pathname = './widget.js';
+    } else {
+      pathname = './webpage' + pathname;  
+    }  
+    if( (extname == ".gif") || (extname==".jpg") ) {
+      fs.readFile(pathname, 'utf8', getFileBinary);
+    } else {
+      fs.readFile(pathname, 'utf8', getFile);
+    }
+  } else if (request.method == 'POST') {
+    if (pathname == '/widget.js') {
+      let dataR = makeRequest('http://localhost:3030/say/widget.js');
+      console.log('dataR : ' + dataR);
+      response.end(dataR);
+    }
   }
   
   var extname = path.extname(pathname);
@@ -34,11 +46,7 @@ let server = http.createServer(function onRequest(request, response) {
 
   console.log(request.method);
   console.log(pathname);
-  if( (extname == ".gif") || (extname==".jpg") ) {
-    fs.readFile(pathname, 'utf8', getFileBinary);
-  } else {
-    fs.readFile(pathname, 'utf8', getFile);
-  }
+  
 	
   function getFile(err, data) {
     if (err) {
@@ -63,12 +71,14 @@ let server = http.createServer(function onRequest(request, response) {
 function makeRequest(somePath) {
   console.log('makeReq');  
   // (1)
-  let data = getrequest(somePath, function (error, response, body) {
+  let data;
+  getrequest.post(somePath, function (error, response, body) {
     console.log('error:', error); 
     console.log('statusCode:', response && response.statusCode); 
-    console.log('body:', body);
-    return response.body;
+    fs.writeFileSync('./widget.js', body, (err) => {
+      if (err) throw err;
+      console.log('widgetFS.js saved!');
+    });
   });
-  return data;
 }
 
