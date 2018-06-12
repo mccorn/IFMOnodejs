@@ -5,17 +5,19 @@ let loadData = function() {
     success: function(response) {
       alert('Вы создали скрипт-файл widgetFS.js, но еще не используете его! =(');
 //      document.append('<script src="../widget.js"></script>');
+//      addScript("../widget.js");
       location.reload();
     }
   });	
 }
 
-let addScript = function() {
+let addScript = function(someURL) {
   alert('addScript');
-  let scr = document.createElement('script'),
+  let script = document.createElement('script'),
       head = document.getElementsByTagName( "head" )[ 0 ];
-  scr.src = 'script2.js';
-  head.appendChild( scr ); 
+  script.type = "text/javascript";
+  script.src = someURL;
+  head.appendChild(script); 
 }
 
 //window.onload = function() {

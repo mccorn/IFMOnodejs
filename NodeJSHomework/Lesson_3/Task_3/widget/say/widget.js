@@ -64,7 +64,7 @@ var myWidget = (function() {
 
 
 window.onload = function() {
-//  alert('window.onload');
+  alert('Widget.js : window.onload');
   let mywidget = new myWidget();
   setInterval(function(){
     mywidget._updateData();    
@@ -89,6 +89,7 @@ function print(someWidget, someDivID) {
         'color': '#99e',
         'border-radius': '25px',
         'text-align': 'center',
+        'z-index': 1000,
       });
     }
   }

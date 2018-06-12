@@ -1,3 +1,1 @@
-window.onload = function() {
-  alert('script2.js loaded');
-}
+alert('script2.js loaded');

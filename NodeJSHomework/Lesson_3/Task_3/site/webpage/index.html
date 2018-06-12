@@ -28,20 +28,22 @@
     .wrapper {
       position: relative;
       display: flex;
+/*      flex-direction: column;*/
       width: 100%;
       height: 100%;
-/*      background: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/flowers.png');*/
+      padding: 150px 40px;
+      background: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/flowers.png');
       text-align: center;
     }
     
     .submit {
-      width: 200px;
-      height: 50px;
-      margin: auto;
+      width: 100px;
+      min-height: 50px;
+      margin: 15px;
       background: rgba(200, 200, 200, 0.2);
       border: 2px solid rgba(200, 200, 200, 0.8);
       border-radius: 15px;
-/*      color: white;*/
+      color: white;
       font-family: cursive;
       font-size: 20px;
     }
@@ -57,7 +59,7 @@
 <body>
   <div id="wrapper" class="wrapper">
     <input class="submit" type="submit" onclick="loadData()" value="Click!" />
-    <input class="submit" type="submit" onclick="addScript()" value="Add script on html!" />
+    <input class="submit" type="submit" onclick="addScript('script2.js')" value="Add script on html!" />
   </div>
 </body>
 </html>
